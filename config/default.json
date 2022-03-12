@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://jp123:jp123@baseballapp.chnek.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "secretToken"
+}
