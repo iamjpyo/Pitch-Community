@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 //Using package express-validator to check if conditions I choose to add per value are validated.
 const {check, validationResult} = require('express-validator');
 const User = require('../../models/UserSchema');
+const config = require('config');
 const Config = require('../../config/default.json')
 
 // @route   POST api/users
@@ -57,7 +58,7 @@ const {name, email, password} = req.body //deconstructed body
         }
     };
 
-    jwt.sign(payload, 'secret', {expiresIn: 36000},
+    jwt.sign(payload, config.get('jwtSecret'), {expiresIn: 36000},
     (err, token)=>{
         if(err) throw err;
         res.json({ token});
