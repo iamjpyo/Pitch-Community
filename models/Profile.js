@@ -7,8 +7,7 @@ const ProfileSchema = new mongoose.Schema({
         ref: 'user'
     },
     currentTeam: {
-        type: String,
-        required: true
+        type: String
     },
     previousTeam: {
         type: String
@@ -22,7 +21,7 @@ const ProfileSchema = new mongoose.Schema({
         required: true
     },
     //Coach or player?
-    status: {
+    role: {
         type: String,
         required: true
     },
