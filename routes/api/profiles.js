@@ -94,7 +94,7 @@ router.get('/', async (req, res) =>{
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error')
-    }
+    } 
 });
 
 // @route  GET api/profiles/users/:user_id
@@ -115,6 +115,26 @@ router.get('/users/:user_id', async (req, res) =>{
         }
         res.status(500).send('Server Error')
     }
+});
+
+// @route  DELETE api/profiles
+// @desc   Delete profile, user & pitches
+// @access Private
+
+router.delete('/', auth, async (req, res) =>{
+    try {
+      //TODO - Remove pitch
+
+      //Remove profile
+      await Profile.findOneAndRemove({ user: req.user.id });
+
+      //Remove user
+      await User.findOneAndRemove({ __id: req.user.id });
+      res.json({msg: 'User deleted'});
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    } 
 });
 
 module.exports = router; 
